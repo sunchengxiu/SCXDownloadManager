@@ -1,0 +1,41 @@
+//
+//  PrefixHeader.pch
+//  断点下载封装
+//
+//  Created by 孙承秀 on 2017/3/7.
+//  Copyright © 2017年 孙承秀. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import <Masonry.h>
+
+// 缓存根目录
+#define SCX_CachePath @"SCXDownloadCache"
+
+// 保存文件大小的plist路径
+#define SCX_CachePlistPath @"SCXDownloadPlistPath.plist"
+
+#define cellID @"cellID" 
+#define sessionCellID @"sessionCellID"
+
+#define IOS_8 [[[UIDevice currentDevice] systemName] floatValue] >= 8.0
+
+#define IOS_10 [[[UIDevice currentDevice] systemName] floatValue] >= 10.0
+
+
+#define shareInstanceH(name) + (instancetype)share##name;
+#define shareInstanceM(name)\
+static id shareInstance = nil;\
++ (instancetype)share##name{\
+    \
+    static dispatch_once_t onceToken;\
+    dispatch_once(&onceToken, ^{\
+        shareInstance = [[self alloc]init];\
+    });\
+    return shareInstance;\
+    \
+}
+
+#endif /* PrefixHeader_pch */
